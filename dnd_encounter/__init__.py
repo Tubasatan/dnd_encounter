@@ -1,4 +1,4 @@
-import app.encounter as encounter
+import encounter as encounter
 
 def main():
     args = encounter.getArgs()
@@ -24,3 +24,6 @@ def main():
     encounter.fillOutPdf(form_data, args)
 
     form_data_obj.close()
+
+if __name__ == '__main__':
+    main()

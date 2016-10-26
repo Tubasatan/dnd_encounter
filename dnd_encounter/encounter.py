@@ -9,9 +9,9 @@ import xmltodict
 from fdfgen import forge_fdf
 
 # TODO - requires pdftk and that is not installable by pip
-# install another pdf library and make this work with that
+# check whether or not pdftk is installed and fail gracefully if not
+# tell user where to get it
 # TODO - package this in a sensible way
-# TODO - add page numbers to the xml file and add that page number to Features/Skills
 
 
 class Monster():
