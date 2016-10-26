@@ -1,6 +1,7 @@
 import app.encounter as encounter
 
 def main():
+    print 'hello'
     args = encounter.getArgs()
 
     if args.name != None:
@@ -16,6 +17,7 @@ def main():
     for idx,m in enumerate(args.monsters):
         monster = encounter.Monster(args.xml.name, m, idx)
         fields.extend(monster.fields)
+
 
 
     form_data_obj = encounter.EncounterData(fields)

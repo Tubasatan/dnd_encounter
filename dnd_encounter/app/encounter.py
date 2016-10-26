@@ -6,12 +6,11 @@ import re
 import subprocess
 import tempfile
 import xmltodict
+import pypdftk
 from fdfgen import forge_fdf
 
 # TODO - requires pdftk and that is not installable by pip
 # install another pdf library and make this work with that
-# TODO - package this in a sensible way
-# TODO - add page numbers to the xml file and add that page number to Features/Skills
 
 
 class Monster():
@@ -377,25 +376,18 @@ def getArgs():
 
 
 def fillOutPdf(data_file, args):
-    # define command for running pdftk
-
-    commandString = 'pdftk {0} fill_form {1} output {2} flatten' # && open {2}'
-    pdftkCommand = commandString.format(os.path.realpath(args.pdf.name),
-                                        data_file,
-                                        args.output)
-
+    # create the pdf using pypdf
+    pdf = os.path.realpath(args.pdf.name)
+    print 'hello'
+    print data_file
+    generated_pdf = pypdftk.fill_form(pdf, data_file,
+                                      out_file=args.output, flatten=True)
+    print "Writing {0}".format(args.output)
 
     # define command for opening the created pdf
     openCommand = 'open ' + args.output
-
-    # run the commands
-    runBashCommand(pdftkCommand)
-    if args.verbose:
-        print "Writing {0}".format(args.output)
     if args.open:
         runBashCommand(openCommand)
-
-
 
 if __name__ == "__main__":
     # EncounterData needs fields data from Monster Class
