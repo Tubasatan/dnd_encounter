@@ -10,6 +10,6 @@ setuptools.setup(name='dnd_encounter',
                  license='GPL',
                  packages=setuptools.find_packages(),
                  scripts=['bin/dnd-encounter'],
-                 install_requires=['xmltodict', 'fdfgen']
+                 install_requires=['xmltodict', 'fdfgen'],
                  zip_safe=False,
                  include_package_data=True)
