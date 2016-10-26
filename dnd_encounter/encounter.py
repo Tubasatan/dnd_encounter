@@ -3,13 +3,12 @@
 import argparse
 import os
 import re
+import warnings
 import subprocess
 import tempfile
 import xmltodict
 from fdfgen import forge_fdf
 
-# TODO - requires pdftk and that is not installable by pip
-# check whether or not pdftk is installed and fail gracefully if not
 # tell user where to get it
 # TODO - package this in a sensible way
 
@@ -249,7 +248,7 @@ class Monster():
                         ts_strings.append(trait)
             except:
                 error_string = '{0} does not have a <trait> tag!'.format(m['name'])
-                print Exception(ValueError, error_string)
+                warnings.warn(error_string)
             # get if multiattack
             multiattack = ''
             if isinstance(m['action'], list):
@@ -389,36 +388,12 @@ def fillOutPdf(data_file, args):
     openCommand = 'open ' + args.output
 
     # run the commands
-    runBashCommand(pdftkCommand)
-    if args.verbose:
-        print "Writing {0}".format(args.output)
+    try:
+        runBashCommand(pdftkCommand)
+    except:
+        raise Exception(NameError, 'pdftk is not installed on this system.' \
+                        '\nSee: https://www.pdflabs.com/tools/pdftk-server/ ' \
+                        'for instructions on how to install.')
+    print "Writing {0}".format(args.output)
     if args.open:
         runBashCommand(openCommand)
-
-
-
-if __name__ == "__main__":
-    # EncounterData needs fields data from Monster Class
-    # Monster Class needs xml data from args which is done in Main
-    # Main needs data from #EncounterData
-    # move args out of main?
-    args = getArgs()
-
-    fields = [('Encounter Name','DRAGONS DRAGONS DRAGONS'),
-              ('Difficulty','Hard'),
-              ('XP Value',25),
-              ('Location','n/a')]
-
-    #monsters = ['kobold', 'Adult White Dragon', 'Goblin']
-
-    for idx,m in enumerate(args.monsters):
-        monster = Monster(args.xml.name, m, idx)
-        fields.extend(monster.fields)
-
-
-    form_data_obj = EncounterData(fields)
-    form_data = form_data_obj.getData()
-
-    fillOutPdf(form_data, args)
-
-    form_data_obj.close()

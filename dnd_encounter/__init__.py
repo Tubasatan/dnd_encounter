@@ -1,6 +1,7 @@
 import encounter as encounter
 
 def main():
+
     args = encounter.getArgs()
 
     if args.name != None:

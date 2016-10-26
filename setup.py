@@ -2,7 +2,7 @@ import setuptools
 
 
 setuptools.setup(name='dnd_encounter',
-                 version='0.3.1',
+                 version='0.4.0',
                  descripion='Tool to fill out a pdf with monster data',
                  url='https://github.com/Tubasatan/dnd_encounter',
                  author='Sebastian Antonsen',
@@ -10,5 +10,6 @@ setuptools.setup(name='dnd_encounter',
                  license='GPL',
                  packages=setuptools.find_packages(),
                  scripts=['bin/dnd-encounter'],
+                 install_requires=['xmltodict', 'fdfgen']
                  zip_safe=False,
                  include_package_data=True)
