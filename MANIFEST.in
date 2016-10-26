@@ -1,3 +1,3 @@
 include README.md
-include dnd_encounter/app/monsters.xml
-include dnd_encounter/app/combat_encounter_sheet.pdf
+include dnd_encounter/monsters.xml
+include dnd_encounter/combat_encounter_sheet.pdf
