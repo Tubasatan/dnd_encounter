@@ -1,9 +1,10 @@
 # dnd_encounter
 
-TODO
-===
-add required packages to setup.py
+use this tool to populate a pdf combat tracker sheet with monster data
 
-go over to using a pip installable library to do what pdftk does now
+syntax example:
+dnd-encounter Troll Aboleth 'Young Adult Dragon'
 
-pdf source is from https://www.reddit.com/r/DnD/comments/2d0y02/5th_edition_combat_tracker/
+credits for the pdf go to:
+Neskatomon over at Reddit.
+https://www.reddit.com/r/DnD/comments/2d0y02/5th_edition_combat_tracker/
