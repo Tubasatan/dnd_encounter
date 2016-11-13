@@ -1,4 +1,6 @@
-# dnd_encounter
+=============
+dnd_encounter
+=============
 
 use this tool to populate a pdf combat tracker sheet with monster data
 
