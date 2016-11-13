@@ -26,7 +26,7 @@ import tempfile
 import xmltodict
 from fdfgen import forge_fdf
 
-# tell user where to get it
+# tell user where to get pdftk
 # TODO - package this in a sensible way
 
 
@@ -195,8 +195,17 @@ class Monster():
                 i+=1
 
                 attacks.append([first, attack['name']])
-                attacks.append([second, '+' + attack['attack'].split('|')[1]])
-                attacks.append([third, attack['attack'].split('|')[2]])
+                #if weapon is versatile (one or two handed) attack['attack']
+                #returns a list.
+                if not isinstance(attack['attack'], list):
+                    attacks.append([second, '+' + attack['attack'].split('|')[1]])
+                    attacks.append([third, attack['attack'].split('|')[2]])
+                else:
+                    one_handed, two_handed = attack['attack']
+                    attack_bonus = one_handed.split('|')[1]
+                    damage = one_handed.split('|')[2] + '/' + two_handed.split('|')[2]
+                    attacks.append([second, '+' + attack_bonus])
+                    attacks.append([third, damage])
 
             # crate a list for all spells
 
