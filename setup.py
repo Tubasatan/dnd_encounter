@@ -1,5 +1,10 @@
 import setuptools
 
+# to update the version change the verison number in this file
+# then run the following
+# git tag <version number>
+# git push --tags origin master
+
 
 setuptools.setup(name='dnd_encounter',
                  version='0.4.2',
